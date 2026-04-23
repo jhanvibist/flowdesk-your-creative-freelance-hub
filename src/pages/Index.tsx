@@ -95,8 +95,14 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="mt-16 md:mt-20 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            <DashboardPreview />
+          <div className="mt-16 md:mt-20 grid md:grid-cols-5 gap-6 items-center animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+            <div className="md:col-span-3">
+              <DashboardPreview />
+            </div>
+            <div className="md:col-span-2 relative rounded-3xl overflow-hidden shadow-elevated hidden md:block">
+              <img src={heroImg} alt="Indian freelancer working on laptop" width={1280} height={896} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 via-transparent to-primary-glow/20 mix-blend-multiply" />
+            </div>
           </div>
         </div>
       </section>

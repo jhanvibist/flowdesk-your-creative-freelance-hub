@@ -4,6 +4,7 @@ import { WaveBackground } from "@/components/WaveBackground";
 import { Button } from "@/components/ui/button";
 import { DashboardPreview } from "@/components/DashboardPreview";
 import { Link } from "react-router-dom";
+import heroImg from "@/assets/hero-freelancer.jpg";
 import {
   ArrowRight,
   FileText,

@@ -114,7 +114,7 @@ const InvoiceEditor = () => {
       due_date: dueDate,
       subtotal, tax_rate: taxRate, tax_amount: taxAmount, total,
       notes: notes || null,
-      status,
+      status: status as "draft" | "sent" | "paid" | "partial" | "overdue",
       currency: "INR",
     };
 

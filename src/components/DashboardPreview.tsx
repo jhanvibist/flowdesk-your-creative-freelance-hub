@@ -31,9 +31,9 @@ export const DashboardPreview = () => {
           {/* KPIs */}
           <div className="grid grid-cols-3 gap-3 md:gap-4 mb-6">
             {[
-              { label: "Earnings", value: "$24,580", trend: "+12.4%", color: "text-status-paid" },
-              { label: "Pending", value: "$3,240", trend: "4 invoices", color: "text-status-pending" },
-              { label: "Overdue", value: "$890", trend: "1 invoice", color: "text-status-overdue" },
+              { label: "Earnings", value: "₹2,45,800", trend: "+12.4%", color: "text-status-paid" },
+              { label: "Pending", value: "₹32,400", trend: "4 invoices", color: "text-status-pending" },
+              { label: "Overdue", value: "₹8,900", trend: "1 invoice", color: "text-status-overdue" },
             ].map((kpi) => (
               <div key={kpi.label} className="rounded-xl bg-card border border-border/60 p-3 md:p-4 shadow-soft">
                 <div className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wide">{kpi.label}</div>
@@ -50,9 +50,9 @@ export const DashboardPreview = () => {
               <ArrowUpRight className="w-4 h-4 text-muted-foreground" />
             </div>
             {[
-              { client: "Acme Studios", amount: "$1,200", status: "paid", icon: CheckCircle2 },
-              { client: "Lunar Agency", amount: "$2,450", status: "pending", icon: Clock },
-              { client: "Northwind Co.", amount: "$890", status: "overdue", icon: AlertCircle },
+              { client: "Acme Studios", amount: "₹1,20,000", status: "paid", icon: CheckCircle2 },
+              { client: "Lunar Agency", amount: "₹24,500", status: "pending", icon: Clock },
+              { client: "Northwind Co.", amount: "₹8,900", status: "overdue", icon: AlertCircle },
             ].map((row) => (
               <div key={row.client} className="px-4 py-3 flex items-center justify-between border-b border-border/40 last:border-0">
                 <div className="flex items-center gap-3">

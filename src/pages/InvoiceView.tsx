@@ -83,7 +83,7 @@ const InvoiceView = () => {
     load();
   };
 
-  const markStatus = async (newStatus: string) => {
+  const markStatus = async (newStatus: "draft" | "sent" | "paid" | "partial" | "overdue") => {
     const { error } = await supabase.from("invoices").update({ status: newStatus }).eq("id", id!);
     if (error) return toast.error(error.message);
     toast.success("Status updated");

@@ -53,9 +53,9 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen bg-background flex">
       {/* Sidebar - desktop */}
       <aside className="hidden lg:flex w-64 flex-col border-r border-border/60 bg-card">
-        <div className="p-6">
+        <div className="px-4 py-4">
           <Link to="/" className="inline-block transition-smooth hover:scale-105">
-            <Logo className="h-9" />
+            <Logo className="h-16" />
           </Link>
         </div>
         <nav className="px-3 flex-1 space-y-1">
@@ -107,7 +107,7 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
-              <Logo className="h-8" />
+              <Logo className="h-14" />
               <button onClick={() => setMobileOpen(false)} className="p-2 rounded-lg hover:bg-secondary">
                 <X className="w-5 h-5" />
               </button>
@@ -142,7 +142,7 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
             <button onClick={() => setMobileOpen(true)} className="p-2 rounded-lg hover:bg-secondary">
               <Menu className="w-5 h-5" />
             </button>
-            <Logo className="h-7" />
+            <Logo className="h-12" />
           </div>
           <div className="flex-1 max-w-md mx-4 hidden md:block">
             <div className="relative">

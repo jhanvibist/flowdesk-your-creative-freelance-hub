@@ -34,9 +34,9 @@ export const WaveBackground = ({ variant = "hero", className = "" }: WaveBackgro
         >
           <defs>
             <linearGradient id="subtleWave" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="hsl(244 75% 59%)" stopOpacity="0.08" />
-              <stop offset="50%" stopColor="hsl(258 85% 68%)" stopOpacity="0.06" />
-              <stop offset="100%" stopColor="hsl(270 80% 70%)" stopOpacity="0.04" />
+              <stop offset="0%" stopColor="hsl(245 80% 60%)" stopOpacity="0.10" />
+              <stop offset="50%" stopColor="hsl(195 65% 65%)" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="hsl(170 60% 65%)" stopOpacity="0.10" />
             </linearGradient>
           </defs>
           <path
@@ -57,16 +57,16 @@ export const WaveBackground = ({ variant = "hero", className = "" }: WaveBackgro
       >
         <defs>
           <linearGradient id="heroWave1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(244 75% 59%)" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="hsl(258 85% 68%)" stopOpacity="0.08" />
+            <stop offset="0%" stopColor="hsl(245 80% 60%)" stopOpacity="0.20" />
+            <stop offset="100%" stopColor="hsl(170 60% 65%)" stopOpacity="0.10" />
           </linearGradient>
           <linearGradient id="heroWave2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(258 85% 68%)" stopOpacity="0.14" />
-            <stop offset="100%" stopColor="hsl(270 80% 70%)" stopOpacity="0.06" />
+            <stop offset="0%" stopColor="hsl(195 65% 65%)" stopOpacity="0.16" />
+            <stop offset="100%" stopColor="hsl(170 60% 70%)" stopOpacity="0.08" />
           </linearGradient>
           <linearGradient id="heroWave3" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(244 75% 59%)" stopOpacity="0.10" />
-            <stop offset="100%" stopColor="hsl(258 85% 68%)" stopOpacity="0.04" />
+            <stop offset="0%" stopColor="hsl(170 60% 65%)" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="hsl(245 80% 60%)" stopOpacity="0.05" />
           </linearGradient>
         </defs>
         <path

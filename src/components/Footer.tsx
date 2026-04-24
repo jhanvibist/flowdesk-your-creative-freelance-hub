@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className="container py-12 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           <div className="col-span-2">
-            <Logo className="h-16 mb-4 -ml-2" />
+            <Logo className="h-24 mb-4 -ml-3" />
             <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
               Keep your work flowing. Get paid without the chaos. The smart invoice and payment tracker for freelancers.
             </p>

@@ -7,46 +7,60 @@ import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-freelancer.jpg";
 import {
   ArrowRight,
-  FileText,
-  Wallet,
-  Bell,
-  BarChart3,
   Sparkles,
-  Zap,
-  Shield,
   CheckCircle2,
+  Repeat,
+  Bell,
+  AlertCircle,
+  Mail,
+  TrendingUp,
+  BarChart3,
+  Activity,
+  Calculator,
+  FolderKanban,
+  Flag,
+  Users,
+  Paperclip,
+  Link2,
 } from "lucide-react";
 
-const features = [
+const proPillars = [
   {
-    icon: FileText,
-    title: "Smart invoicing",
-    desc: "Create beautiful, branded invoices in seconds. Templates that flow with your work.",
+    num: "01",
+    title: "Automation",
+    tagline: "Bill on autopilot",
+    icon: Repeat,
+    items: [
+      { icon: Repeat, label: "Recurring invoices" },
+      { icon: Bell, label: "Automatic reminders" },
+      { icon: Mail, label: "Overdue follow-up emails" },
+      { icon: AlertCircle, label: "Auto payment alerts" },
+    ],
   },
   {
-    icon: Wallet,
-    title: "Payment tracking",
-    desc: "Know exactly what's paid, pending, or overdue — at a glance, in real time.",
-  },
-  {
-    icon: Bell,
-    title: "Gentle reminders",
-    desc: "Automated nudges that get you paid faster — without the awkward follow-ups.",
-  },
-  {
+    num: "02",
+    title: "Analytics",
+    tagline: "See your money flow",
     icon: BarChart3,
-    title: "Income insights",
-    desc: "Visualize your earnings flow with calm, clear analytics built for freelancers.",
+    items: [
+      { icon: TrendingUp, label: "Monthly revenue charts" },
+      { icon: Users, label: "Client performance" },
+      { icon: Activity, label: "Overdue trends" },
+      { icon: Calculator, label: "Payment forecasting" },
+    ],
   },
   {
-    icon: Zap,
-    title: "Lightning fast",
-    desc: "Log work, generate invoice, send. Three taps from billable to billed.",
-  },
-  {
-    icon: Shield,
-    title: "Secure by design",
-    desc: "Bank-grade encryption keeps your client and payment data quietly protected.",
+    num: "03",
+    title: "Advanced project tools",
+    tagline: "Run projects end-to-end",
+    icon: FolderKanban,
+    items: [
+      { icon: Flag, label: "Milestones" },
+      { icon: Users, label: "Team collaboration" },
+      { icon: CheckCircle2, label: "Task assignment" },
+      { icon: Paperclip, label: "File attachments" },
+      { icon: Link2, label: "Client portal" },
+    ],
   },
 ];
 
@@ -107,35 +121,59 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section id="features" className="relative py-24 md:py-32">
-        <div className="container">
-          <div className="max-w-2xl mx-auto text-center mb-16">
-            <div className="text-xs font-semibold uppercase tracking-wider text-primary mb-3">Features</div>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-              Everything you need.
-              <br />
-              <span className="text-muted-foreground font-medium">Nothing you don't.</span>
+      {/* PRO / PAID PLAN */}
+      <section id="features" className="relative py-24 md:py-32 overflow-hidden">
+        <WaveBackground variant="subtle" className="opacity-60" />
+        <div className="container relative">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+              <Sparkles className="w-3.5 h-3.5" /> Pro / Paid Plan
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
+              Everything you need to scale.
             </h2>
             <p className="text-muted-foreground text-base md:text-lg">
-              Six quietly powerful tools, one beautifully simple app.
+              Three pillars of premium features built for freelancers who treat their craft like a business.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-            {features.map((f, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {proPillars.map((p, i) => (
               <div
-                key={f.title}
-                className="group relative rounded-2xl bg-card border border-border/60 p-6 md:p-8 shadow-soft hover:shadow-card transition-smooth hover:-translate-y-1"
-                style={{ animationDelay: `${i * 0.05}s` }}
+                key={p.num}
+                className="group relative rounded-3xl bg-card border border-border/60 p-7 md:p-8 shadow-card hover:shadow-elevated transition-flow hover:-translate-y-2 animate-fade-in-up"
+                style={{ animationDelay: `${i * 0.1}s` }}
               >
-                <div className="w-12 h-12 rounded-xl gradient-wave flex items-center justify-center mb-5 shadow-soft group-hover:shadow-glow transition-smooth">
-                  <f.icon className="w-5 h-5 text-primary-foreground" />
+                <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full gradient-wave opacity-20 blur-2xl group-hover:opacity-40 transition-smooth" />
+
+                <div className="flex items-center justify-between mb-6">
+                  <div className="text-5xl md:text-6xl font-black gradient-wave-text leading-none">#{p.num}</div>
+                  <div className="w-12 h-12 rounded-2xl gradient-wave flex items-center justify-center shadow-soft group-hover:shadow-glow transition-smooth">
+                    <p.icon className="w-5 h-5 text-primary-foreground" />
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+
+                <h3 className="text-2xl font-bold mb-1">{p.title}</h3>
+                <p className="text-sm text-muted-foreground mb-6">{p.tagline}</p>
+
+                <ul className="space-y-3">
+                  {p.items.map((item) => (
+                    <li key={item.label} className="flex items-center gap-3 text-sm">
+                      <div className="w-7 h-7 rounded-lg bg-accent/60 flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-3.5 h-3.5 text-primary" />
+                      </div>
+                      <span className="font-medium">{item.label}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Button variant="wave" size="xl" asChild>
+              <Link to="/signup">Start your free trial <ArrowRight className="w-4 h-4" /></Link>
+            </Button>
           </div>
         </div>
       </section>

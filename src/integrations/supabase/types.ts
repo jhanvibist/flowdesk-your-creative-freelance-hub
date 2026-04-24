@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      client_portal_tokens: {
+        Row: {
+          created_at: string
+          expires_at: string | null
+          id: string
+          invoice_id: string
+          last_viewed_at: string | null
+          token: string
+          user_id: string
+          view_count: number
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          invoice_id: string
+          last_viewed_at?: string | null
+          token: string
+          user_id: string
+          view_count?: number
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          invoice_id?: string
+          last_viewed_at?: string | null
+          token?: string
+          user_id?: string
+          view_count?: number
+        }
+        Relationships: []
+      }
       clients: {
         Row: {
           address: string | null
@@ -52,6 +85,39 @@ export type Database = {
           notes?: string | null
           phone?: string | null
           updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      invoice_attachments: {
+        Row: {
+          created_at: string
+          file_name: string
+          file_size: number
+          id: string
+          invoice_id: string
+          mime_type: string | null
+          storage_path: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          file_name: string
+          file_size?: number
+          id?: string
+          invoice_id: string
+          mime_type?: string | null
+          storage_path: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          file_name?: string
+          file_size?: number
+          id?: string
+          invoice_id?: string
+          mime_type?: string | null
+          storage_path?: string
           user_id?: string
         }
         Relationships: []
@@ -96,6 +162,42 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      invoice_reminders: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          id: string
+          invoice_id: string
+          reminder_type: Database["public"]["Enums"]["reminder_type"]
+          scheduled_at: string
+          sent_at: string | null
+          status: Database["public"]["Enums"]["reminder_status"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          invoice_id: string
+          reminder_type: Database["public"]["Enums"]["reminder_type"]
+          scheduled_at: string
+          sent_at?: string | null
+          status?: Database["public"]["Enums"]["reminder_status"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          invoice_id?: string
+          reminder_type?: Database["public"]["Enums"]["reminder_type"]
+          scheduled_at?: string
+          sent_at?: string | null
+          status?: Database["public"]["Enums"]["reminder_status"]
+          user_id?: string
+        }
+        Relationships: []
       }
       invoices: {
         Row: {
@@ -161,6 +263,51 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      milestones: {
+        Row: {
+          amount: number
+          completed_at: string | null
+          created_at: string
+          description: string | null
+          due_date: string | null
+          id: string
+          project_id: string
+          sort_order: number
+          status: Database["public"]["Enums"]["milestone_status"]
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount?: number
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          project_id: string
+          sort_order?: number
+          status?: Database["public"]["Enums"]["milestone_status"]
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          project_id?: string
+          sort_order?: number
+          status?: Database["public"]["Enums"]["milestone_status"]
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       payments: {
         Row: {
@@ -242,6 +389,180 @@ export type Database = {
         }
         Relationships: []
       }
+      projects: {
+        Row: {
+          budget: number
+          client_id: string | null
+          color: string
+          created_at: string
+          description: string | null
+          end_date: string | null
+          id: string
+          name: string
+          start_date: string | null
+          status: Database["public"]["Enums"]["project_status"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          budget?: number
+          client_id?: string | null
+          color?: string
+          created_at?: string
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          name: string
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          budget?: number
+          client_id?: string | null
+          color?: string
+          created_at?: string
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          name?: string
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      recurring_invoices: {
+        Row: {
+          active: boolean
+          amount: number
+          client_id: string | null
+          created_at: string
+          id: string
+          interval: Database["public"]["Enums"]["recurrence_interval"]
+          last_generated_at: string | null
+          line_items: Json
+          next_run_date: string
+          notes: string | null
+          tax_rate: number
+          template_name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          amount?: number
+          client_id?: string | null
+          created_at?: string
+          id?: string
+          interval?: Database["public"]["Enums"]["recurrence_interval"]
+          last_generated_at?: string | null
+          line_items?: Json
+          next_run_date?: string
+          notes?: string | null
+          tax_rate?: number
+          template_name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          amount?: number
+          client_id?: string | null
+          created_at?: string
+          id?: string
+          interval?: Database["public"]["Enums"]["recurrence_interval"]
+          last_generated_at?: string | null
+          line_items?: Json
+          next_run_date?: string
+          notes?: string | null
+          tax_rate?: number
+          template_name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      reminder_settings: {
+        Row: {
+          auto_reminders_enabled: boolean
+          created_at: string
+          days_before_due: number
+          overdue_cadence_days: number
+          reply_to_email: string | null
+          signature: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          auto_reminders_enabled?: boolean
+          created_at?: string
+          days_before_due?: number
+          overdue_cadence_days?: number
+          reply_to_email?: string | null
+          signature?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          auto_reminders_enabled?: boolean
+          created_at?: string
+          days_before_due?: number
+          overdue_cadence_days?: number
+          reply_to_email?: string | null
+          signature?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      tasks: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          description: string | null
+          due_date: string | null
+          id: string
+          milestone_id: string | null
+          priority: Database["public"]["Enums"]["task_priority"]
+          project_id: string | null
+          status: Database["public"]["Enums"]["task_status"]
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          milestone_id?: string | null
+          priority?: Database["public"]["Enums"]["task_priority"]
+          project_id?: string | null
+          status?: Database["public"]["Enums"]["task_status"]
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          milestone_id?: string | null
+          priority?: Database["public"]["Enums"]["task_priority"]
+          project_id?: string | null
+          status?: Database["public"]["Enums"]["task_status"]
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       work_logs: {
         Row: {
           billed: boolean
@@ -304,6 +625,18 @@ export type Database = {
     }
     Enums: {
       invoice_status: "draft" | "sent" | "paid" | "partial" | "overdue"
+      milestone_status: "pending" | "in_progress" | "completed"
+      project_status: "active" | "on_hold" | "completed" | "archived"
+      recurrence_interval:
+        | "weekly"
+        | "biweekly"
+        | "monthly"
+        | "quarterly"
+        | "yearly"
+      reminder_status: "scheduled" | "sent" | "failed" | "cancelled"
+      reminder_type: "before_due" | "on_due" | "overdue"
+      task_priority: "low" | "medium" | "high"
+      task_status: "todo" | "in_progress" | "done"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -432,6 +765,19 @@ export const Constants = {
   public: {
     Enums: {
       invoice_status: ["draft", "sent", "paid", "partial", "overdue"],
+      milestone_status: ["pending", "in_progress", "completed"],
+      project_status: ["active", "on_hold", "completed", "archived"],
+      recurrence_interval: [
+        "weekly",
+        "biweekly",
+        "monthly",
+        "quarterly",
+        "yearly",
+      ],
+      reminder_status: ["scheduled", "sent", "failed", "cancelled"],
+      reminder_type: ["before_due", "on_due", "overdue"],
+      task_priority: ["low", "medium", "high"],
+      task_status: ["todo", "in_progress", "done"],
     },
   },
 } as const

@@ -16,6 +16,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { formatINR, formatDateIN, toDateInputValue } from "@/lib/format";
 import { ArrowLeft, CheckCircle2, Clock, AlertCircle, Receipt, Pencil, Plus, IndianRupee } from "lucide-react";
 import { toast } from "sonner";
+import { InvoiceAttachmentsCard, ClientPortalCard } from "@/components/InvoiceExtras";
 
 interface Profile { full_name: string | null; business_name: string | null; gstin: string | null; pan: string | null; phone: string | null }
 interface Client { id: string; name: string; company: string | null; email: string | null; phone: string | null; gstin: string | null; address: string | null }
@@ -244,6 +245,11 @@ const InvoiceView = () => {
               ))}
             </div>
           )}
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          <InvoiceAttachmentsCard invoiceId={invoice.id} />
+          <ClientPortalCard invoiceId={invoice.id} />
         </div>
       </div>
 

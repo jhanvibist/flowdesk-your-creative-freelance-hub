@@ -15,6 +15,9 @@ import {
   Menu,
   X,
   Sparkles,
+  Repeat,
+  FolderKanban,
+  BarChart3,
 } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -23,9 +26,13 @@ import { toast } from "sonner";
 const nav = [
   { to: "/dashboard", label: "Dashboard", icon: Waves },
   { to: "/invoices", label: "Invoices", icon: Receipt },
+  { to: "/recurring", label: "Recurring", icon: Repeat, pro: true },
+  { to: "/projects", label: "Projects", icon: FolderKanban, pro: true },
   { to: "/clients", label: "Clients", icon: UserCircle2 },
   { to: "/work-logs", label: "Work logs", icon: Timer },
   { to: "/payments", label: "Payments", icon: IndianRupee },
+  { to: "/analytics", label: "Analytics", icon: BarChart3, pro: true },
+  { to: "/reminders", label: "Reminders", icon: Bell, pro: true },
   { to: "/settings", label: "Settings", icon: Settings2 },
 ];
 
@@ -53,12 +60,12 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen bg-background flex">
       {/* Sidebar - desktop */}
       <aside className="hidden lg:flex w-64 flex-col border-r border-border/60 bg-card">
-        <div className="px-4 py-4">
+        <div className="px-3 py-4">
           <Link to="/" className="inline-block transition-smooth hover:scale-105">
-            <Logo className="h-16" />
+            <Logo className="h-24" />
           </Link>
         </div>
-        <nav className="px-3 flex-1 space-y-1">
+        <nav className="px-3 flex-1 space-y-1 overflow-y-auto">
           {nav.map((item) => (
             <NavLink
               key={item.to}
@@ -74,15 +81,14 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
               {({ isActive }) => (
                 <>
                   <item.icon
-                    className={`w-4 h-4 transition-transform group-hover:scale-110 ${
-                      isActive ? "" : "group-hover:rotate-3"
-                    }`}
+                    className={`w-4 h-4 transition-transform group-hover:scale-110 ${isActive ? "" : "group-hover:rotate-3"}`}
                     strokeWidth={isActive ? 2.4 : 1.8}
                   />
                   {item.label}
-                  {isActive && (
-                    <Sparkles className="ml-auto w-3 h-3 opacity-80" />
+                  {item.pro && !isActive && (
+                    <span className="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded gradient-wave text-primary-foreground">PRO</span>
                   )}
+                  {isActive && <Sparkles className="ml-auto w-3 h-3 opacity-80" />}
                 </>
               )}
             </NavLink>
@@ -107,7 +113,7 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
-              <Logo className="h-14" />
+              <Logo className="h-20" />
               <button onClick={() => setMobileOpen(false)} className="p-2 rounded-lg hover:bg-secondary">
                 <X className="w-5 h-5" />
               </button>
@@ -142,7 +148,7 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
             <button onClick={() => setMobileOpen(true)} className="p-2 rounded-lg hover:bg-secondary">
               <Menu className="w-5 h-5" />
             </button>
-            <Logo className="h-12" />
+            <Logo className="h-16" />
           </div>
           <div className="flex-1 max-w-md mx-4 hidden md:block">
             <div className="relative">

@@ -16,6 +16,12 @@ import InvoiceEditor from "./pages/InvoiceEditor.tsx";
 import InvoiceView from "./pages/InvoiceView.tsx";
 import Payments from "./pages/Payments.tsx";
 import Settings from "./pages/Settings.tsx";
+import Recurring from "./pages/Recurring.tsx";
+import Reminders from "./pages/Reminders.tsx";
+import Projects from "./pages/Projects.tsx";
+import ProjectDetail from "./pages/ProjectDetail.tsx";
+import Analytics from "./pages/Analytics.tsx";
+import PortalInvoice from "./pages/PortalInvoice.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -31,6 +37,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/portal/invoice/:token" element={<PortalInvoice />} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/clients" element={<ProtectedRoute><Clients /></ProtectedRoute>} />
             <Route path="/work-logs" element={<ProtectedRoute><WorkLogs /></ProtectedRoute>} />
@@ -38,6 +45,11 @@ const App = () => (
             <Route path="/invoices/new" element={<ProtectedRoute><InvoiceEditor /></ProtectedRoute>} />
             <Route path="/invoices/:id" element={<ProtectedRoute><InvoiceView /></ProtectedRoute>} />
             <Route path="/invoices/:id/edit" element={<ProtectedRoute><InvoiceEditor /></ProtectedRoute>} />
+            <Route path="/recurring" element={<ProtectedRoute><Recurring /></ProtectedRoute>} />
+            <Route path="/reminders" element={<ProtectedRoute><Reminders /></ProtectedRoute>} />
+            <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>} />
+            <Route path="/projects/:id" element={<ProtectedRoute><ProjectDetail /></ProtectedRoute>} />
+            <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
             <Route path="/payments" element={<ProtectedRoute><Payments /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />

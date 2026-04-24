@@ -77,7 +77,7 @@ export const AuthLayout = ({ mode }: AuthLayoutProps) => {
     <div className="min-h-screen flex flex-col md:flex-row bg-background">
       <div className="flex-1 flex flex-col px-6 py-8 md:px-12 lg:px-20">
         <Link to="/" className="inline-flex">
-          <Logo className="h-9" />
+          <Logo className="h-16 -ml-2" />
         </Link>
 
         <div className="flex-1 flex items-center justify-center py-10">

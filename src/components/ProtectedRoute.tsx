@@ -10,7 +10,7 @@ export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-4 animate-fade-in">
-          <Logo className="h-10 animate-pulse" />
+          <Logo className="h-20 animate-pulse" />
           <div className="text-sm text-muted-foreground">Loading your flow…</div>
         </div>
       </div>

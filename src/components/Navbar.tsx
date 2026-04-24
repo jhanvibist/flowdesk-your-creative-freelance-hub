@@ -18,9 +18,9 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-background/70 border-b border-border/40">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-20 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 transition-smooth hover:opacity-80">
-          <Logo className="h-9" />
+          <Logo className="h-16" />
         </Link>
 
         {onLanding && (

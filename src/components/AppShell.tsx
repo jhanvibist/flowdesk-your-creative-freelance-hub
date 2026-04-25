@@ -6,34 +6,81 @@ import {
   Waves,
   Receipt,
   UserCircle2,
-  Timer,
   IndianRupee,
   Settings2,
   Search,
-  Bell,
   LogOut,
   Menu,
   X,
   Sparkles,
   Repeat,
+  Bell,
+  Mail,
+  AlertCircle,
+  TrendingUp,
+  Users,
+  Activity,
+  Calculator,
   FolderKanban,
+  Flag,
+  CheckCircle2,
+  Paperclip,
+  Link2,
   BarChart3,
 } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 const nav = [
   { to: "/dashboard", label: "Dashboard", icon: Waves },
   { to: "/invoices", label: "Invoices", icon: Receipt },
-  { to: "/recurring", label: "Recurring", icon: Repeat, pro: true },
-  { to: "/projects", label: "Projects", icon: FolderKanban, pro: true },
   { to: "/clients", label: "Clients", icon: UserCircle2 },
-  { to: "/work-logs", label: "Work logs", icon: Timer },
+  { to: "/projects", label: "Projects", icon: FolderKanban },
   { to: "/payments", label: "Payments", icon: IndianRupee },
-  { to: "/analytics", label: "Analytics", icon: BarChart3, pro: true },
-  { to: "/reminders", label: "Reminders", icon: Bell, pro: true },
   { to: "/settings", label: "Settings", icon: Settings2 },
+];
+
+const proGroups = [
+  {
+    title: "Automation",
+    icon: Repeat,
+    items: [
+      { to: "/recurring", label: "Recurring invoices", icon: Repeat },
+      { to: "/reminders", label: "Automatic reminders", icon: Bell },
+      { to: "/reminders", label: "Overdue follow-up emails", icon: Mail },
+      { to: "/reminders", label: "Auto payment alerts", icon: AlertCircle },
+    ],
+  },
+  {
+    title: "Analytics",
+    icon: BarChart3,
+    items: [
+      { to: "/analytics", label: "Monthly revenue charts", icon: TrendingUp },
+      { to: "/analytics", label: "Client performance", icon: Users },
+      { to: "/analytics", label: "Overdue trends", icon: Activity },
+      { to: "/analytics", label: "Payment forecasting", icon: Calculator },
+    ],
+  },
+  {
+    title: "Advanced project tools",
+    icon: FolderKanban,
+    items: [
+      { to: "/projects", label: "Milestones", icon: Flag },
+      { to: "/projects", label: "Team collaboration", icon: Users },
+      { to: "/projects", label: "Task assignment", icon: CheckCircle2 },
+      { to: "/projects", label: "File attachments", icon: Paperclip },
+      { to: "/invoices", label: "Client portal", icon: Link2 },
+    ],
+  },
 ];
 
 export const AppShell = ({ children }: { children: React.ReactNode }) => {
@@ -85,9 +132,6 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
                     strokeWidth={isActive ? 2.4 : 1.8}
                   />
                   {item.label}
-                  {item.pro && !isActive && (
-                    <span className="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded gradient-wave text-primary-foreground">PRO</span>
-                  )}
                   {isActive && <Sparkles className="ml-auto w-3 h-3 opacity-80" />}
                 </>
               )}
@@ -97,10 +141,10 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
         <div className="p-4 m-3 rounded-2xl bg-gradient-to-br from-accent to-secondary border border-border/40">
           <div className="text-sm font-semibold mb-1">Pro tip 💡</div>
           <p className="text-xs text-muted-foreground mb-3">
-            Generate invoices straight from your work logs in one tap.
+            Unlock automation, analytics &amp; advanced project tools with Pro.
           </p>
           <Button variant="wave" size="sm" className="w-full" asChild>
-            <Link to="/work-logs">Log work</Link>
+            <Link to="/analytics">Explore Pro</Link>
           </Button>
         </div>
       </aside>
@@ -160,15 +204,69 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="rounded-full hidden sm:inline-flex">
-              <Bell className="w-4 h-4" />
-            </Button>
+            {/* Pro plan dropdown — replaces sidebar Pro items */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="wave-outline" size="sm" className="rounded-full gap-1.5 hidden sm:inline-flex">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span className="hidden md:inline">Pro plan</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 p-2">
+                <DropdownMenuLabel className="px-2 py-1.5 flex items-center gap-2">
+                  <Sparkles className="w-3.5 h-3.5 text-primary" />
+                  <span className="text-xs uppercase tracking-wider">Pro plan</span>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {proGroups.map((g, gi) => (
+                  <div key={g.title} className={gi > 0 ? "mt-2 pt-2 border-t border-border/40" : ""}>
+                    <div className="px-2 py-1.5 flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-md gradient-wave flex items-center justify-center">
+                        <g.icon className="w-3 h-3 text-primary-foreground" />
+                      </div>
+                      <span className="text-xs font-bold uppercase tracking-wide">{g.title}</span>
+                    </div>
+                    {g.items.map((it, idx) => (
+                      <DropdownMenuItem key={`${g.title}-${idx}`} asChild>
+                        <Link to={it.to} className="cursor-pointer text-sm pl-9">
+                          <it.icon className="w-3.5 h-3.5 mr-2 text-muted-foreground" />
+                          {it.label}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </div>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Button variant="ghost" size="icon" className="rounded-full" onClick={handleSignOut} title="Sign out">
               <LogOut className="w-4 h-4" />
             </Button>
-            <div className="w-9 h-9 rounded-full gradient-wave flex items-center justify-center text-primary-foreground text-sm font-semibold shadow-soft">
-              {initials}
-            </div>
+
+            {/* User profile dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="w-9 h-9 rounded-full gradient-wave flex items-center justify-center text-primary-foreground text-sm font-semibold shadow-soft transition-smooth hover:scale-105"
+                  aria-label="Profile menu"
+                >
+                  {initials}
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel className="truncate">{user?.email}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/settings" className="cursor-pointer">
+                    <Settings2 className="w-4 h-4 mr-2" /> Settings
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
+                  <LogOut className="w-4 h-4 mr-2" /> Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </header>
 

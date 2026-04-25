@@ -83,6 +83,9 @@ const Invoices = () => {
             <p className="text-sm text-muted-foreground mt-1">Send. Track. Get paid.</p>
           </div>
           <div className="flex flex-wrap gap-2">
+            <Button variant="wave-outline" asChild>
+              <Link to="/recurring">Recurring</Link>
+            </Button>
             <div className="relative flex-1 md:w-64">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input

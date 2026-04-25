@@ -204,6 +204,18 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            {/* Notifications */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full relative"
+              onClick={() => navigate("/reminders")}
+              title="Notifications"
+            >
+              <Bell className="w-4 h-4" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-card" />
+            </Button>
+
             {/* Pro plan dropdown — replaces sidebar Pro items */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

@@ -405,6 +405,40 @@ const Dashboard = () => {
           </div>
         </div>
 
+        {/* Analytics preview (Pro) */}
+        <div className="relative rounded-2xl bg-card border border-border/60 shadow-soft overflow-hidden">
+          <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full gradient-wave opacity-15 blur-3xl pointer-events-none" />
+          <div className="px-5 md:px-6 py-5 border-b border-border/60 flex items-center justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <h3 className="text-base font-semibold">Analytics</h3>
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded gradient-wave text-primary-foreground">PRO</span>
+              </div>
+              <p className="text-xs text-muted-foreground">Revenue trends, client performance &amp; forecasting</p>
+            </div>
+            <Button variant="wave" size="sm" asChild>
+              <Link to="/analytics"><Sparkles className="w-3.5 h-3.5" /> View details</Link>
+            </Button>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-border/40">
+            <div className="px-5 md:px-6 py-4">
+              <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Outstanding</div>
+              <div className="text-xl font-bold">{formatINR(pendingTotal + overdueTotal)}</div>
+              <div className="text-xs text-muted-foreground mt-1">Forecasted to land</div>
+            </div>
+            <div className="px-5 md:px-6 py-4">
+              <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1">This month</div>
+              <div className="text-xl font-bold">{formatINR(thisMonthEarnings)}</div>
+              <div className="text-xs text-muted-foreground mt-1">{today.toLocaleString("en-IN", { month: "long" })} earnings</div>
+            </div>
+            <div className="px-5 md:px-6 py-4">
+              <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Overdue trend</div>
+              <div className="text-xl font-bold">{overdueInvs.length}</div>
+              <div className="text-xs text-muted-foreground mt-1">invoices need follow-up</div>
+            </div>
+          </div>
+        </div>
+
         {/* Recent payments */}
         <div className="rounded-2xl bg-card border border-border/60 shadow-soft overflow-hidden">
           <div className="px-5 md:px-6 py-5 border-b border-border/60">

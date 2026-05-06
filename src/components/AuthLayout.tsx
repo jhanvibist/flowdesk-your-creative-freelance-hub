@@ -129,14 +129,23 @@ export const AuthLayout = ({ mode }: AuthLayoutProps) => {
                 </div>
                 <Input
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
-                  className="rounded-xl h-11"
+                  className="rounded-xl h-11 pr-10"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   minLength={6}
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  tabIndex={-1}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
               </div>
 
               <Button type="submit" variant="wave" size="lg" className="w-full mt-2" disabled={loading}>
